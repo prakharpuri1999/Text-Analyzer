@@ -1,21 +1,25 @@
 import React, { useState } from "react";
 
 export default function TextForm(props) {
+  console.log(props);
   const [text, setText] = useState("");
   const [wrdLength, setwrdLength] = useState(0);
   const handleUpClick = () => {
     console.log("Upper Case was clicked" + text);
     let newText = text.toUpperCase();
     setText(newText);
+    props.showAlert("Converted to Upper Case", "success");
   };
   const handleLoClick = () => {
     console.log("Upper Case was clicked" + text);
     let newText = text.toLowerCase();
     setText(newText);
+    props.showAlert("Converted to Lower Case", "success");
   };
   const handleClearText=()=>{
       let newText="";
       setText(newText);
+      props.showAlert("Text Cleared", "success");
   }
   const handleOnchange = (event) => {
     console.log("On change");
@@ -31,7 +35,7 @@ export default function TextForm(props) {
             len1--;
         }
     }
-    if(arr1!=null && arr1!=''){
+    if(arr1!==null && arr1!==''){
     setwrdLength(len1);
     }
     else{
@@ -41,10 +45,11 @@ export default function TextForm(props) {
   
   return (
     <>
-      <div className="container">
+      <div className="container" style={{color: props.mode==='dark'?'white':'black'}}>
         <h2>{props.heading}</h2>
         <div className="mb-3">
           <textarea
+            style={{backgroundColor: props.mode==='dark'? 'grey': 'white', color: props.mode==='dark'?'white':'black'}}
             className="form-control"
             value={text}
             onChange={(e)=>handleOnchange(e)}
@@ -63,14 +68,14 @@ export default function TextForm(props) {
         </button>
       </div>
 
-      <div className="container my-3">
+      <div className="container my-3" style={{color:props.mode==='dark'?'white':'black'}}>
         <h2>Your text summary</h2>
         <p>
           {wrdLength} words and {text.length} characters
         </p>
         <p>{0.008 * wrdLength} Minutes Read</p>
         <h3>Preview</h3>
-        <p>{text}</p>
+        <p>{text.length>0?text:"Enter something in the textBox above to preview it here"}</p>
       </div>
     </>
   );

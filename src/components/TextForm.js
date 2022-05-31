@@ -49,6 +49,7 @@ export default function TextForm(props) {
         <h2>{props.heading}</h2>
         <div className="mb-3">
           <textarea
+            placeholder=".....message"
             style={{backgroundColor: props.mode==='dark'? 'grey': 'white', color: props.mode==='dark'?'white':'black'}}
             className="form-control"
             value={text}

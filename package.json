@@ -1,6 +1,6 @@
 {
   "homepage": "https://prakharpuri1999.github.io/Text-Analyzer",
-  "name": "myapp",
+  "name": "textanalyzer",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
